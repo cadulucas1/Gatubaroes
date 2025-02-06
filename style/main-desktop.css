@@ -22,20 +22,16 @@ body, html {
     display: flex;
     justify-content: space-between;
     height: 64px;
-    background-color: red;
     padding: 8px 32px;
-
+    background: rgba(0, 0, 0, 0.15);
 }
 
 #logo {
     aspect-ratio: 1 / 1;
-}
-
-#logo {
-
-    &> img {
-    height: 100%;
-    }
+    
+    & img {
+        height: 100%;
+        }
 }
 
 #menu {
@@ -44,14 +40,22 @@ body, html {
 
     & li {
         list-style-type: none;
+        color: white;
+        cursor: pointer;
     }
 
     & ul {
         display: flex;
-        gap: 8px;
+        gap: 16px;
     }
 }
 
 .menu-select {
     text-decoration: underline;
+}
+
+#search-container {
+    height: 100%;
+    background-color: red;
+    margin: 0 20%;
 }
