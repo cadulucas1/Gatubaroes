@@ -1,0 +1,26 @@
+@import url("./root.css");
+
+#header-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    background-color: red;
+    padding: 8px 16px;
+ 
+};
+
+#container-dados-filme {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    background-color: blue;
+    padding: 8px 16px;
+};
+
+#container-mapa {
+    width: 600px;
+    height: 450px;
+    border-radius: 8px;
+}
