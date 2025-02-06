@@ -1,0 +1,40 @@
+@import url("./root.css");
+
+#header-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    background-color: red;
+    padding: 8px 32px;
+
+}
+
+#logo {
+    aspect-ratio: 1 / 1;
+}
+
+#logo {
+
+    &> img {
+    height: 100%;
+    }
+}
+
+#menu {
+    display: flex;
+    align-items: center;
+
+    & li {
+        list-style-type: none;
+    }
+
+    & ul {
+        display: flex;
+        gap: 8px;
+    }
+}
+
+.menu-select {
+    text-decoration: underline;
+}
