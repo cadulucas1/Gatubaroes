@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filme e Localização no Google Maps</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .link {
+      color: blue;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <h1>Digite o nome de um filme</h1>
+  <input type="text" id="movieInput" placeholder="Ex: Star Wars" />
+  <button id="searchBtn">Pesquisar</button>
+  <p id="output"></p>
+
+  <script>
+    // Substitua com sua chave da API do TMDB
+    const tmdbApiKey = 'SUA_CHAVE_API_TMDB_AQUI';
+    // Substitua com sua chave da API do Google Maps
+    const googleApiKey = 'SUA_CHAVE_API_GOOGLE_AQUI';
+
+    // Função para buscar informações sobre o filme
+    function searchMovie(movieName) {
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=${tmdbApiKey}&query=${encodeURIComponent(movieName)}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.results.length > 0) {
+            const movieId = data.results[0].id;
+            fetchMovieDetails(movieId);
+          } else {
+            document.getElementById('output').innerHTML = 'Filme não encontrado. Tente novamente.';
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar o filme:', error);
+        });
+    }
+
+    // Função para buscar detalhes do filme, incluindo locais de gravação
+    function fetchMovieDetails(movieId) {
+      fetch(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${tmdbApiKey}`)
+        .then(response => response.json())
+        .then(data => {
+          const locations = data.production_countries || [];
+          
+          if (locations.length > 0) {
+            const locationLinks = locations.map(country => {
+              return `<span class="link" onclick="openMapForCountry('${country.name}')">${country.name}</span>`;
+            }).join(', ');
+            
+            document.getElementById('output').innerHTML = `Locais de gravação: ${locationLinks}`;
+          } else {
+            document.getElementById('output').innerHTML = 'Não foram encontrados locais de gravação.';
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar detalhes do filme:', error);
+        });
+    }
+
+    // Função para abrir o Google Maps com a localização do país
+    function openMapForCountry(countryName) {
+      fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(countryName)}&key=${googleApiKey}`)
+        .then(response => response.json())
+        .then(data => {
+          if (data.results.length > 0) {
+            const location = data.results[0].geometry.location;
+            window.open(`https://www.google.com/maps?q=${location.lat},${location.lng}`, '_blank');
+          } else {
+            alert('Local não encontrado no Google Maps.');
+          }
+        })
+        .catch(error => {
+          console.error('Erro ao buscar a localização do país:', error);
+        });
+    }
+
+    // Adicionando evento ao botão para buscar o filme
+    document.getElementById('searchBtn').addEventListener('click', () => {
+      const movieName = document.getElementById('movieInput').value;
+      if (movieName) {
+        searchMovie(movieName);
+      } else {
+        alert('Por favor, digite um nome de filme');
+      }
+    });
+  </script>
+</body>
+</html>
