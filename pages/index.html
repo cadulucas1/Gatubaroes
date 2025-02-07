@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cine Map</title>
+    <title>CineMap</title>
     <link rel="stylesheet" href="../style/main-desktop.css">
+    <link rel="icon" href="../medias/header/logo.png" type="image/x-icon">
     <header id="header-main">
         <div id="logo">
             <img src="../medias/header/logo.png">
@@ -21,8 +22,48 @@
     <video class="bg-video" autoplay muted loop>
         <source src="../medias/video/background-video.mp4" type="video/mp4">
     </video>
-    <div id="search-container">
-        oi
+    <div id="f-container">
+        <div id="search-container">
+            <h2>Onde foi filmado esse filme?</h2>
+            <input type="search" id="search-input" placeholder="Digite aqui...">
+        </div>
+        <div id="posters-wrapper">
+            <div id="posters">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+                <img src="../medias/images/posterExemplo.png" alt="">
+            </div>
+        </div>
+        <div class="button-container">
+            <button id="toggleButton" onclick="togglePosters()">Mostrar Posters</button>
+        </div>
     </div>
+    <!-- Botão feito unicamente para mostrar como a div dos posters deve subir ao encontrar um filme -->
+    <script>
+        function togglePosters() {
+            const posters = document.getElementById('posters');
+            const button = document.getElementById('toggleButton');
+
+            posters.style.bottom = '0';
+
+        }
+    </script>
 </body>
 </html>
