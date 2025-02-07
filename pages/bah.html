@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Input de Reais</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            border: 2px solid #007bff;
+            border-radius: 5px;
+            overflow: hidden;
+            background-color: #fff;
+            width: 200px;
+        }
+
+        .money-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 10px;
+            font-size: 16px;
+            text-align: left; /* Alinha o texto normalmente */
+        }
+
+        .money-input::placeholder {
+            color: #999;
+        }
+
+        .currency-symbol {
+            background-color: #007bff;
+            color: white;
+            padding: 0 10px;
+            font-size: 16px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="input-container">
+        <input 
+            type="text" 
+            class="money-input" 
+            placeholder="0,00" 
+            oninput="formatarMoeda(this)" />
+        <div class="currency-symbol">R$</div>
+    </div>
+
+    <script>
+        function formatarMoeda(input) {
+            // Remove caracteres não-numéricos
+            let value = input.value.replace(/\D/g, "");
+            // Converte para formato de moeda
+            value = (parseFloat(value) / 100).toFixed(2).replace(".", ",");
+            // Define o valor formatado no campo
+            input.value = value || "0,00";
+        }
+    </script>
+
+</body>
+</html>
