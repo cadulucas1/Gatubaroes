@@ -57,39 +57,47 @@ body, html{
     justify-content: flex-start;
     flex-direction: row;
     flex-wrap: wrap;
+    /* padding-right: 2%; */
 
 }
 
 .div_dados_filme {
     max-height: 93.3vh;
     width: 20%;
-    background-color: #141414;
-    padding: 1.5% 2%;
+    background-color: #F9F9FC;
+    row-gap: 0px;
+
+    /* padding: 1.5% 2%; */
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
 }
 
 .div_dados_mapa {
-    max-height: 93.3vh;
+    max-height: 93.2vh;
     width: 80%;
-    background-color: #5B52BC;
-    padding: 1.5% 0%;
+    background-color: #F9F9FC;
+    /* padding: 1.5% 0%; */
 }
 
 .div_banner_filme {
     width: 100%;
-    background-color: rgb(0, 255, 221);
+    padding: 16px;
+    background-color: #F9F9FC;
     aspect-ratio: 2/3;
     margin-bottom: 8%;
-    border-radius: 8px;
+    & > img {
+        aspect-ratio: 2 / 3;
+        width: 100%;
+    }
+    /* border-radius: 5px; */
 }
 
 .div_texto_filme {
     overflow-y: auto;
-    background-color: rgb(255, 255, 255);
+    background-color: #F9F9FC;
     padding: 2% 4%;
     box-sizing: border-box;
     height: 100%;
-    border-radius: 8px;
+    /* border-radius: 5px; */
 }
