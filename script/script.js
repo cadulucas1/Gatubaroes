@@ -49,7 +49,7 @@ async function fetchMoviePosters(movieName) {
                 const movieElement = document.createElement('div');
                 movieElement.style.display = 'inline-block';
                 movieElement.style.margin = '10px';
-                movieElement.innerHTML = `<img src="${posterUrl}" alt="${movie.title} Poster" style="width:150px; height:auto;">`;
+                movieElement.innerHTML = `<img src="${posterUrl}" alt="${movie.title} Poster" style="width:auto; height:240px;">`;
                 posterContainer.appendChild(movieElement);
             }
         });
