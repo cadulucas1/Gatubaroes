@@ -19,9 +19,8 @@ async function fetchMoviePosters(movieName) {
 
     posters.style.bottom = '0';
     console.log(movieName.value)
-    
-    //const apiKey = await getApiKey();
-    const apiKey = "e1fe7ae125001d6e3ddc2c1518544d55";
+
+    const apiKey = await getApiKey();
     if (!apiKey) {
         console.error('API key not found.');
         return;
