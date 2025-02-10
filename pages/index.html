@@ -25,30 +25,10 @@
     <div id="f-container">
         <div id="search-container">
             <h2>Onde foi filmado esse filme?</h2>
-            <input type="search" id="search-input" placeholder="Digite aqui...">
+            <input type="search" id="search-input" placeholder="Digite aqui..." oninput="fetchMoviePosters(this)">
         </div>
         <div id="posters-wrapper">
-            <div id="posters">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
-                <img src="../medias/images/posterExemplo.png" alt="">
+            <div id="poster-container">
             </div>
         </div>
         <div class="button-container">
@@ -56,14 +36,7 @@
         </div>
     </div>
     <!-- Botão feito unicamente para mostrar como a div dos posters deve subir ao encontrar um filme -->
-    <script>
-        function togglePosters() {
-            const posters = document.getElementById('posters');
-            const button = document.getElementById('toggleButton');
-
-            posters.style.bottom = '0';
-
-        }
-    </script>
+    
+    <script src="../script/script.js"></script>
 </body>
 </html>
