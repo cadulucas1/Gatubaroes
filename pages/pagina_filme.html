@@ -21,29 +21,292 @@
 <body>
     <div class="fundo_container">
         <div class="div_dados_filme">
-            
             <div class="div_banner_filme">
-                <img src="../medias/images/posterExemplo.png">
+                <img src="../medias/images/posterExemplo.png" id="movie-poster">
             </div>
-            
             <div class="div_texto_filme">
-                <h3>Star Wars: Episódio IV - Uma Nova Esperança.</h2><br>
-                <h4>Locais de gravações:  
-                Tunísia,
-                Estados Unidos,
-                Guatemala.</h4>
+                <h3 id="movie-title">Star Wars: Episódio IV - Uma Nova Esperança.</h2><br>
+                <h4>Países de Produção:</h4>
+                <div id="country-buttons"></div> <!-- Container for country buttons -->
             </div>
         </div>
         <div class="div_dados_mapa">
             <iframe
+                id="map-iframe"
                 style="width: 100%; height: 100%;"
                 loading="lazy"
                 allowfullscreen
-                referrerpolicy="no-referrer-when-downgrade"
-                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDcWHOTkYw6e3YQoYGi4GpvYWSEYGehKY4&q=BRASIL">
+                referrerpolicy="no-referrer-when-downgrade">
             </iframe>
         </div>
-        
     </div>
+    <script>
+        // Function to extract URL parameters
+        function getQueryParams() {
+            const params = {};
+            const queryString = window.location.search.substring(1);
+            const pairs = queryString.split('&');
+            pairs.forEach(pair => {
+                const [key, value] = pair.split('=');
+                params[decodeURIComponent(key)] = decodeURIComponent(value.replace(/\+/g, ' '));
+            });
+            return params;
+        }
+
+        const countryTranslations = {
+            "Afghanistan": "Afeganistão",
+            "Albania": "Albânia",
+            "Algeria": "Argélia",
+            "Andorra": "Andorra",
+            "Angola": "Angola",
+            "Antigua and Barbuda": "Antígua e Barbuda",
+            "Argentina": "Argentina",
+            "Armenia": "Armênia",
+            "Australia": "Austrália",
+            "Austria": "Áustria",
+            "Azerbaijan": "Azerbaijão",
+            "Bahamas": "Bahamas",
+            "Bahrain": "Bahrein",
+            "Bangladesh": "Bangladesh",
+            "Barbados": "Barbados",
+            "Belarus": "Bielorrússia",
+            "Belgium": "Bélgica",
+            "Belize": "Belize",
+            "Benin": "Benim",
+            "Bhutan": "Butão",
+            "Bolivia": "Bolívia",
+            "Bosnia and Herzegovina": "Bósnia e Herzegovina",
+            "Botswana": "Botsuana",
+            "Brazil": "Brasil",
+            "Brunei": "Brunei",
+            "Bulgaria": "Bulgária",
+            "Burkina Faso": "Burquina Faso",
+            "Burundi": "Burundi",
+            "Cabo Verde": "Cabo Verde",
+            "Cambodia": "Camboja",
+            "Cameroon": "Camarões",
+            "Canada": "Canadá",
+            "Central African Republic": "República Centro-Africana",
+            "Chad": "Chade",
+            "Chile": "Chile",
+            "China": "China",
+            "Colombia": "Colômbia",
+            "Comoros": "Comores",
+            "Congo (Congo-Brazzaville)": "Congo",
+            "Costa Rica": "Costa Rica",
+            "Croatia": "Croácia",
+            "Cuba": "Cuba",
+            "Cyprus": "Chipre",
+            "Czechia (Czech Republic)": "Tchéquia",
+            "Democratic Republic of the Congo": "República Democrática do Congo",
+            "Denmark": "Dinamarca",
+            "Djibouti": "Djibuti",
+            "Dominica": "Dominica",
+            "Dominican Republic": "República Dominicana",
+            "Ecuador": "Equador",
+            "Egypt": "Egito",
+            "El Salvador": "El Salvador",
+            "Equatorial Guinea": "Guiné Equatorial",
+            "Eritrea": "Eritreia",
+            "Estonia": "Estônia",
+            "Eswatini (Swaziland)": "Essuatíni",
+            "Ethiopia": "Etiópia",
+            "Fiji": "Fiji",
+            "Finland": "Finlândia",
+            "France": "França",
+            "Gabon": "Gabão",
+            "Gambia": "Gâmbia",
+            "Georgia": "Geórgia",
+            "Germany": "Alemanha",
+            "Ghana": "Gana",
+            "Greece": "Grécia",
+            "Grenada": "Granada",
+            "Guatemala": "Guatemala",
+            "Guinea": "Guiné",
+            "Guinea-Bissau": "Guiné-Bissau",
+            "Guyana": "Guiana",
+            "Haiti": "Haiti",
+            "Honduras": "Honduras",
+            "Hungary": "Hungria",
+            "Iceland": "Islândia",
+            "India": "Índia",
+            "Indonesia": "Indonésia",
+            "Iran": "Irã",
+            "Iraq": "Iraque",
+            "Ireland": "Irlanda",
+            "Israel": "Israel",
+            "Italy": "Itália",
+            "Ivory Coast": "Costa do Marfim",
+            "Jamaica": "Jamaica",
+            "Japan": "Japão",
+            "Jordan": "Jordânia",
+            "Kazakhstan": "Cazaquistão",
+            "Kenya": "Quênia",
+            "Kiribati": "Kiribati",
+            "Kuwait": "Kuwait",
+            "Kyrgyzstan": "Quirguistão",
+            "Laos": "Laos",
+            "Latvia": "Letônia",
+            "Lebanon": "Líbano",
+            "Lesotho": "Lesoto",
+            "Liberia": "Libéria",
+            "Libya": "Líbia",
+            "Liechtenstein": "Liechtenstein",
+            "Lithuania": "Lituânia",
+            "Luxembourg": "Luxemburgo",
+            "Madagascar": "Madagascar",
+            "Malawi": "Malaui",
+            "Malaysia": "Malásia",
+            "Maldives": "Maldivas",
+            "Mali": "Mali",
+            "Malta": "Malta",
+            "Marshall Islands": "Ilhas Marshall",
+            "Mauritania": "Mauritânia",
+            "Mauritius": "Maurício",
+            "Mexico": "México",
+            "Micronesia": "Micronésia",
+            "Moldova": "Moldávia",
+            "Monaco": "Mônaco",
+            "Mongolia": "Mongólia",
+            "Montenegro": "Montenegro",
+            "Morocco": "Marrocos",
+            "Mozambique": "Moçambique",
+            "Myanmar (Burma)": "Mianmar",
+            "Namibia": "Namíbia",
+            "Nauru": "Nauru",
+            "Nepal": "Nepal",
+            "Netherlands": "Países Baixos",
+            "New Zealand": "Nova Zelândia",
+            "Nicaragua": "Nicarágua",
+            "Niger": "Níger",
+            "Nigeria": "Nigéria",
+            "North Korea": "Coreia do Norte",
+            "North Macedonia": "Macedônia do Norte",
+            "Norway": "Noruega",
+            "Oman": "Omã",
+            "Pakistan": "Paquistão",
+            "Palau": "Palau",
+            "Panama": "Panamá",
+            "Papua New Guinea": "Papua-Nova Guiné",
+            "Paraguay": "Paraguai",
+            "Peru": "Peru",
+            "Philippines": "Filipinas",
+            "Poland": "Polônia",
+            "Portugal": "Portugal",
+            "Qatar": "Catar",
+            "Romania": "Romênia",
+            "Russia": "Rússia",
+            "Rwanda": "Ruanda",
+            "Saint Kitts and Nevis": "São Cristóvão e Névis",
+            "Saint Lucia": "Santa Lúcia",
+            "Saint Vincent and the Grenadines": "São Vicente e Granadinas",
+            "Samoa": "Samoa",
+            "San Marino": "San Marino",
+            "Saudi Arabia": "Arábia Saudita",
+            "Senegal": "Senegal",
+            "Serbia": "Sérvia",
+            "Seychelles": "Seicheles",
+            "Sierra Leone": "Serra Leoa",
+            "Singapore": "Singapura",
+            "Slovakia": "Eslováquia",
+            "Slovenia": "Eslovênia",
+            "Solomon Islands": "Ilhas Salomão",
+            "Somalia": "Somália",
+            "South Africa": "África do Sul",
+            "South Korea": "Coreia do Sul",
+            "South Sudan": "Sudão do Sul",
+            "Spain": "Espanha",
+            "Sri Lanka": "Sri Lanka",
+            "Sudan": "Sudão",
+            "Suriname": "Suriname",
+            "Sweden": "Suécia",
+            "Switzerland": "Suíça",
+            "Syria": "Síria",
+            "Tajikistan": "Tadjiquistão",
+            "Tanzania": "Tanzânia",
+            "Thailand": "Tailândia",
+            "Timor-Leste": "Timor-Leste",
+            "Togo": "Togo",
+            "Tonga": "Tonga",
+            "Tunisia": "Tunísia",
+            "Turkey": "Turquia",
+            "Turkmenistan": "Turcomenistão",
+            "Tuvalu": "Tuvalu",
+            "Uganda": "Uganda",
+            "Ukraine": "Ucrânia",
+            "United Arab Emirates": "Emirados Árabes Unidos",
+            "United Kingdom": "Reino Unido",
+            "United States of America": "Estados Unidos",
+            "Uruguay": "Uruguai",
+            "Uzbekistan": "Uzbequistão",
+            "Vanuatu": "Vanuatu",
+            "Vatican City": "Cidade do Vaticano",
+            "Venezuela": "Venezuela",
+            "Vietnam": "Vietnã",
+            "Yemen": "Iêmen",
+            "Zambia": "Zâmbia",
+            "Zimbabwe": "Zimbábue"
+        };
+
+
+         // Fetch API key from env file
+        async function fetchApiKey() {
+            try {
+                const response = await fetch('../env');
+                const data = await response.json();
+                return data.tokenAPIMaps;
+            } catch (error) {
+                console.error("Error fetching API key:", error);
+                return null; // Fallback if the fetch fails
+            }
+        }
+
+    // Function to update the Google Maps iframe
+    async function updateMap(country) {
+        const apiKey = await fetchApiKey(); // Fetch the API key asynchronously
+        if (apiKey) {
+            const iframe = document.getElementById("map-iframe");
+            iframe.src = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(country)}`;
+        } else {
+            console.error("API key not found. Map cannot be loaded.");
+        }
+    }
+
+        // Extract URL parameters
+        const params = getQueryParams();
+        if (params.title) {
+            document.getElementById('movie-title').textContent = params.title;
+        }
+        if (params.poster) {
+            document.getElementById('movie-poster').src = params.poster;
+        }
+        if (params.countries) {
+            try {
+                const countries = JSON.parse(params.countries); // Parse the countries array
+                const translatedCountries = countries.map(country => countryTranslations[country] || country); // Translate countries
+
+                // Create buttons for each country
+                const countryButtonsContainer = document.getElementById('country-buttons');
+                translatedCountries.forEach((country, index) => {
+                    const button = document.createElement('button');
+                    button.textContent = country;
+                    button.classList.add('country_button'); // Add the CSS class
+                    button.style.display = 'block'; // Display buttons below each other
+                    button.style.margin = '5px 0'; // Add some spacing
+                    button.addEventListener('click', () => {
+                        updateMap(countries[index]); // Update the map with the original country name
+                    });
+                    countryButtonsContainer.appendChild(button);
+                });
+
+                // Set the map to the first country by default
+                if (countries.length > 0) {
+                    updateMap(countries[0]);
+                }
+            } catch (error) {
+                console.error("Erro ao processar os países:", error);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -1,0 +1,63 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #5b52bc;
+}
+
+.parallaxImg {
+    position: absolute;
+    opacity: 0;
+    animation-name: moverLogo ;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.5s; 
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+.parallaxDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+}
+
+.empresaNome {
+    font-size: 5rem;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    opacity: 0;
+    font-family: 'Roboto', sans-serif;
+    transform: translateX(100%);
+    animation: aparecerNome 1.5s ease-out forwards;
+    animation-delay: 2.5s;
+}
+
+
+@keyframes moverLogo {
+    0% {
+        transform: translateX(0)scale(0)rotate(-45deg); 
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(-100px) scale(0.4)rotate(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes aparecerNome {
+    0% {
+        transform: translateX(100%) translateY(30px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(45%) translateY(30px); 
+        opacity: 1;
+    }
+}
