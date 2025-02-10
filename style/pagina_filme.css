@@ -1,0 +1,103 @@
+@import url('../style/root.css');
+
+body, html{
+    height: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    max-height: 100vh;
+    letter-spacing: 1.5px;
+
+}
+
+/* HEADER */
+#header-main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 64px;
+    padding: 8px 32px;
+    background: #141414;
+}
+ 
+#logo {
+    aspect-ratio: 1 / 1;
+   
+    & img {
+        height: 100%;
+        }
+}
+ 
+#menu {
+    display: flex;
+    align-items: center;
+ 
+    & li {
+        list-style-type: none;
+        color: white;
+        cursor: pointer;
+    }
+ 
+    & ul {
+        display: flex;
+        gap: 16px;
+    }
+}
+ 
+.menu-select {
+    text-decoration: underline;
+}
+
+/* BODY */
+.fundo_container {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* padding-right: 2%; */
+
+}
+
+.div_dados_filme {
+    max-height: 93.3vh;
+    width: 20%;
+    background-color: #F9F9FC;
+    row-gap: 0px;
+
+    /* padding: 1.5% 2%; */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.div_dados_mapa {
+    max-height: 93.2vh;
+    width: 80%;
+    background-color: #F9F9FC;
+    /* padding: 1.5% 0%; */
+}
+
+.div_banner_filme {
+    width: 100%;
+    padding: 16px;
+    background-color: #F9F9FC;
+    aspect-ratio: 2/3;
+    margin-bottom: 8%;
+    & > img {
+        aspect-ratio: 2 / 3;
+        width: 100%;
+    }
+    /* border-radius: 5px; */
+}
+
+.div_texto_filme {
+    overflow-y: auto;
+    background-color: #F9F9FC;
+    padding: 2% 4%;
+    box-sizing: border-box;
+    height: 100%;
+    /* border-radius: 5px; */
+}
