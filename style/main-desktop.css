@@ -156,3 +156,23 @@ body, html {
     }
 
 }
+
+
+@media (max-width: 768px) {
+
+    #poster-container {
+        flex-direction: row;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    #posters-wrapper {
+        margin: 0 16px;
+    }
+
+    #search-container {
+        margin: 0 16px;
+    }
+
+}
