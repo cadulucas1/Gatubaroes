@@ -1,4 +1,4 @@
-// Function to fetch the API key from env.json
+// Função para pegar a chave API de filmes do ENV
 async function getApiKey() {
     try {
         const response = await fetch('../env');
@@ -10,7 +10,7 @@ async function getApiKey() {
     }
 }
 
-// Function to search for a movie by name and fetch up to 10 posters
+// Função para procurar até 100 filmes mais parecidos com esse nome.
 async function fetchMoviePosters(movieName) {
     const posters = document.getElementById('poster-container');
     const button = document.getElementById('toggleButton');
@@ -31,43 +31,43 @@ async function fetchMoviePosters(movieName) {
         const searchData = await searchResponse.json();
 
         if (searchData.results.length === 0) {
-            console.error('No movies found with that name.');
+            console.error('Nenhum filme achado com esse nome.');
             return;
         }
 
-        // Get up to 10 results
+        // Pegue até 100 resultados.
         const movies = searchData.results.slice(0, 100);
 
         const posterContainer = document.getElementById('poster-container');
-        posterContainer.innerHTML = ''; // Clear previous results
+        posterContainer.innerHTML = ''; // Limpe os resultados anteriores toda vez que pesquisar.
 
         movies.forEach(movie => {
             if (movie.poster_path) {
                 const posterUrl = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
 
-                // Fetch additional movie details (including production countries)
+                // Fetch nos detalhes do filme usando a API.
                 fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=${apiKey}`)
                     .then(response => response.json())
                     .then(movieDetails => {
-                        const productionCountries = movieDetails.production_countries || [];
+                        const productionCountries = movieDetails.production_countries || []; // Locais em que foram produzidos o filme.
 
                         const movieElement = document.createElement('div');
                         movieElement.style.display = 'inline-block';
                         movieElement.style.margin = '10px';
 
-                        // Create a clickable button for each poster
+                        // Cria o botão clicável.
                         const posterButton = document.createElement('button');
                         posterButton.style.background = 'none';
                         posterButton.style.border = 'none';
                         posterButton.style.padding = '0';
                         posterButton.style.cursor = 'pointer';
 
-                        // Add the poster image to the button
+                        // Adiciona a imagem ao botão.
                         posterButton.innerHTML = `<img src="${posterUrl}" alt="${movie.title} Poster" style="width:auto; height:240px;">`;
 
-                        // Add click event to redirect to pagina_filme.html with movie data
+                        // Adiciona evento de click no botão de cada poster para enviar para a pagina_filme com dados na url.
                         posterButton.addEventListener('click', () => {
-                            // Pass movie data as URL parameters
+                            // L - Coloca as informações do filme na URL que vai ser mandada para o pagina_filme
                             const urlParams = new URLSearchParams({
                                 title: movie.title,
                                 poster: posterUrl,
@@ -89,15 +89,14 @@ async function fetchMoviePosters(movieName) {
     }
 }
 
-// Wait for the DOM to load
+// L - Espera pela página html carregar, mais especificamente seu conteúdo. (DOM = Document Object Model).
 document.addEventListener('DOMContentLoaded', () => {
-    // Get the elements with animations
+    // L - Pega os elementos das animações.
     const parallaxImg = document.querySelector('.parallaxImg');
     const empresaNome = document.querySelector('.empresaNome');
 
-    // Listen for the end of the last animation
+    // L - No Fim da animação do parallax, chama o Index.
     empresaNome.addEventListener('animationend', () => {
-        // Redirect to another page after the last animation ends
-        window.location.href = 'index.html'; // Replace with your desired URL
+        window.location.href = 'index.html';
     });
 });

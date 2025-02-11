@@ -27,7 +27,7 @@
             <div class="div_texto_filme">
                 <h3 id="movie-title">Star Wars: Episódio IV - Uma Nova Esperança.</h2><br>
                 <h4>Países de Produção:</h4>
-                <div id="country-buttons"></div> <!-- Container for country buttons -->
+                <div id="country-buttons"></div>
             </div>
         </div>
         <div class="div_dados_mapa">
@@ -40,8 +40,7 @@
             </iframe>
         </div>
     </div>
-    <script>
-        // Function to extract URL parameters
+    <script>        
         function getQueryParams() {
             const params = {};
             const queryString = window.location.search.substring(1);
@@ -248,8 +247,6 @@
             "Zimbabwe": "Zimbábue"
         };
 
-
-         // Fetch API key from env file
         async function fetchApiKey() {
             try {
                 const response = await fetch('../env');
@@ -257,13 +254,12 @@
                 return data.tokenAPIMaps;
             } catch (error) {
                 console.error("Error fetching API key:", error);
-                return null; // Fallback if the fetch fails
+                return null;
             }
         }
 
-    // Function to update the Google Maps iframe
     async function updateMap(country) {
-        const apiKey = await fetchApiKey(); // Fetch the API key asynchronously
+        const apiKey = await fetchApiKey();
         if (apiKey) {
             const iframe = document.getElementById("map-iframe");
             iframe.src = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=${encodeURIComponent(country)}`;
@@ -271,8 +267,6 @@
             console.error("API key not found. Map cannot be loaded.");
         }
     }
-
-        // Extract URL parameters
         const params = getQueryParams();
         if (params.title) {
             document.getElementById('movie-title').textContent = params.title;
@@ -282,24 +276,22 @@
         }
         if (params.countries) {
             try {
-                const countries = JSON.parse(params.countries); // Parse the countries array
-                const translatedCountries = countries.map(country => countryTranslations[country] || country); // Translate countries
+                const countries = JSON.parse(params.countries);
+                const translatedCountries = countries.map(country => countryTranslations[country] || country);
 
-                // Create buttons for each country
                 const countryButtonsContainer = document.getElementById('country-buttons');
                 translatedCountries.forEach((country, index) => {
                     const button = document.createElement('button');
                     button.textContent = country;
-                    button.classList.add('country_button'); // Add the CSS class
-                    button.style.display = 'block'; // Display buttons below each other
-                    button.style.margin = '5px 0'; // Add some spacing
+                    button.classList.add('country_button');
+                    button.style.display = 'block';
+                    button.style.margin = '5px 0';
                     button.addEventListener('click', () => {
-                        updateMap(countries[index]); // Update the map with the original country name
+                        updateMap(countries[index]);
                     });
                     countryButtonsContainer.appendChild(button);
                 });
-
-                // Set the map to the first country by default
+                
                 if (countries.length > 0) {
                     updateMap(countries[0]);
                 }
