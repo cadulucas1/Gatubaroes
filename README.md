@@ -21,3 +21,12 @@ Ao digitar o nome de um filme, o site utiliza duas APIs: a **API do TMDB** para 
 ## Equipe:
 
 **Gatubarão** - Time de desenvolvedores da **SenacHubAcademy**.
+- **[Cadulucas1](https://github.com/cadulucas1)** - GitHub: [@cadulucas1](https://github.com/cadulucas1)
+- **[eliasasa](https://github.com/eliasasa)** - GitHub: [@eliasasa](https://github.com/eliasasa)
+- **[Vyenvyy](https://github.com/Vyenvyy)** - GitHub: [@Vyenvyy](https://github.com/Vyenvyy)
+- **[LuisFernandoVirissimoNascimento](https://github.com/LuisFernandoVirissimoNascimento)** - GitHub: [@LuisFernandoVirissimoNascimento](https://github.com/LuisFernandoVirissimoNascimento)
+- **[Joao772003](https://github.com/Joao772003)** - GitHub: [@Joao772003](https://github.com/Joao772003)
+- **[RicardoDev08](https://github.com/RicardoDev08)** - GitHub: [@RicardoDev08](https://github.com/RicardoDev08)
+
+## Docente do Projeto:
+- **[Caique Fernandes](https://github.com/Caique-FLopes)** - GitHub: [@Caique-FLopes](https://github.com/Caique-FLopes)
