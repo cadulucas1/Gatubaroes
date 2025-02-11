@@ -1,8 +1,4 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+@import url('../style/root.css');
 
 body {
     font-family: Arial, sans-serif;
@@ -14,7 +10,7 @@ body {
     justify-content: space-between;
     height: 64px;
     padding: 8px 32px;
-    background: #141414;
+    background: rgba(0, 0, 0, 0.15);
 }
 
 .logo {
@@ -43,6 +39,7 @@ body {
 .nav-links {
     display: flex;
     list-style: none;
+    
 }
 
 .nav-links li {
@@ -62,9 +59,8 @@ body {
 
     .nav-links {
         position: absolute;
-        top: 64px; /* Define a posição abaixo do menu */
-        left: 0;
-        width: 30%; /* Para ocupar toda a largura */
+        top: 64px;
+        width: 30%;
         background: #333;
         flex-direction: column;
         align-items: center;
@@ -74,5 +70,38 @@ body {
 
     .nav-links.show {
         display: flex;
+        left: 0;
+        flex-direction: column;
+        height: 15%;
+        width: 40%;
+        border-radius: 0 8px 8px 0;
+        row-gap: 20px;
+        background-color: #5B52BC;
+        align-items: flex-start;
+
+        & > div {
+            display: flex;
+            flex-direction: row;
+        }
+
+        & #inline-1{
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: white;
+            border: 5px;
+        }
+        & #inline-2{
+            left: 0;
+            width: 70%;
+            height: 3px;
+            background-color: white;
+            border: 5px;
+        }
+    }
+    #icone-map, #icone-home{
+        color: #fff;
+
+
     }
 }
